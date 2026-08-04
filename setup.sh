@@ -20,18 +20,17 @@ else
     echo "✅ SSH 키 이미 존재 - 스킵"
 fi
 
-# 3. 폴더 구조 생성
-mkdir -p ~/codyssey
-cd ~/codyssey
-
-# codyssey 폴더가 없을 때만 clone
-if [ ! -d ".git" ]; then
-    git clone git@github.com:beatles12/codyssey.git .
-    echo "✅ codyssey clone 완료"
-else
-    echo "✅ codyssey 이미 존재 - 스킵"
-fi
+# 3. 공개키 복사 및 다음 단계 안내
+pbcopy < ~/.ssh/id_ed25519.pub
 
 echo ""
-echo "🎉 세팅 완료!"
-echo "📁 작업 폴더: ~/codyssey"
+echo "📋 SSH 공개키가 클립보드에 복사되었습니다."
+echo "1. GitHub에 공개키 등록:"
+echo "   https://github.com/settings/ssh/new"
+echo "2. 연결 테스트:"
+echo "   ssh -T git@github.com"
+echo "3. 연결 성공 후 저장소 복제:"
+echo "   cd ~"
+echo "   git clone git@github.com:beatles12/codyssey.git"
+echo ""
+echo "✅ 1차 세팅 완료!"
